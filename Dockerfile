@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /build
+COPY pyproject.toml uv.lock ./
 RUN  uv sync --frozen --no-install-project --no-dev
 ADD . /build
 RUN  uv sync --frozen --no-dev

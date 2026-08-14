@@ -12,13 +12,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /build
-RUN  \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
+RUN  --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --no-dev
 ADD . /build
-RUN  \
-    uv sync --frozen --no-dev
+RUN  uv sync --frozen --no-dev
 
 
 FROM python:$PYTHON_VERSION-slim-bookworm

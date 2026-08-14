@@ -19,7 +19,7 @@ RUN  uv sync --frozen --no-dev
 
 
 FROM python:$PYTHON_VERSION-slim-bookworm
-
+COPY --from=oven/bun:latest /usr/local/bin/bun /usr/local/bin/bun
 COPY --from=builder /build /code
 WORKDIR /code
 
